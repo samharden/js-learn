@@ -1,0 +1,66 @@
+<! DOCTYPE html>
+<head>
+  <script type="text/javascript">
+
+
+
+  function test() {
+    var typeInput = document.getElementsByTagName('input')[0].value
+    var title = document.getElementById('title');
+    title.innerText = typeInput;
+  }
+
+  function test2() {
+    var typeInput = document.getElementsByTagName('input')[0].value
+    var ul = document.getElementsByTagName('ul')[0];
+    var li = document.createElement('li');
+    var node = document.createTextNode(typeInput);
+    li.appendChild(node);
+    ul.appendChild(li);
+  }
+  var numClicks = 0
+  function title_click() {
+    var title_text = document.getElementById('title').innerText
+    numClicks++;
+    document.getElementById('title').innerText = title_text + numClicks;
+  }
+  window.onload = function() {
+    document.getElementById('title').addEventListener('click', title_click);
+    var lis = document.getElementsByTagName('li');
+    var i;
+    for (i = 0; i < lis.length; i++) {
+      var li = lis[i];
+      li.addEventListener('mouseenter', mouseEnter);
+      li.addEventListener('mouseleave', mouseLeave);
+    }
+  }
+
+  function mouseEnter(event) {
+  event.target.innerText = event.target.innerText + " HOVER";
+  }
+  function mouseLeave(event) {
+  event.target.innerText = event.target.innerText.replace(" HOVER", "");
+  }
+
+  </script>
+</head>
+<html>
+<body>
+
+<h1 id="title" >Title</h1>
+<p class="paragraph">Paragraph text 1</p>
+<p class="paragraph">Paragraph text 2</p>
+
+<input type="text"></input>
+
+<ul>
+  <li>List element 1</li>
+  <li>List element 2</li>
+  <li>List element 3</li>
+</ul>
+<button onClick='test()'>Change Title</button>
+<button onClick='test2()'>Add to List</button>
+</body>
+
+
+</html>
